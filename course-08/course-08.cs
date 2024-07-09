@@ -101,6 +101,12 @@ public class Solution
     public static byte DayOfWeekOrderUsingBuiltIn(short year, byte month, byte day)
         => (byte)new DateTime(year, month, day).DayOfWeek;
 
+    public static byte DayOfWeekOrder(DateTime date)
+       => DayOfWeekOrder((short)date.Year, (byte)date.Month, (byte)date.Day);
+
+    public static byte DayOfWeekOrderUsingBuiltIn(DateTime date)
+        => (byte)date.DayOfWeek;
+
     public static string DayShortName(byte dayOfWeekOrder)
     {
         string[] arrDayNames = { "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" };
@@ -292,15 +298,38 @@ public class Solution
         int diff = (date2 - date1).Days;
         return includeEndDay ? ++diff : diff;
     }
-
     public static int AgeInDays(DateTime date)
     {
         return DiffInDays(date, DateTime.Now);
     }
 
+    public static bool IsEndOfWeek(DateTime date)
+       => (date.DayOfWeek == DayOfWeek.Saturday);
+
+    public static bool IsWeekend(DateTime date)
+       => (date.DayOfWeek == DayOfWeek.Friday || date.DayOfWeek == DayOfWeek.Saturday);
+
+    public static bool IsBusinessDay(DateTime date)
+       => !IsWeekend(date);
+
+    public static byte DaysUntilTheEndOfWeek(DateTime date)
+       => (byte)((byte)DayOfWeek.Saturday - (byte)date.DayOfWeek);
+
+    public static byte DaysUntilTheEndOfMonth(DateTime date)
+       => (byte)(DateTime.DaysInMonth(date.Year, date.Month) - date.Day + 1);
+
+    public static short DaysUntilTheEndOfYear(DateTime date)
+       => (short)(DaysInYear((short)date.Year) - date.DayOfYear + 1);
+
     private static void Main()
     {
-        Console.WriteLine(SubtractOneDayFromDate(new DateTime(2022, 12, 31)).ToShortDateString());
+        DateTime date = new DateTime(2022, 9, 27);
+        Console.WriteLine(IsEndOfWeek(date));
+        Console.WriteLine(IsWeekend(date));
+        Console.WriteLine(IsBusinessDay(date));
+        Console.WriteLine(DaysUntilTheEndOfWeek(date));
+        Console.WriteLine(DaysUntilTheEndOfMonth(date));
+        Console.WriteLine(DaysUntilTheEndOfYear(date));
 
         Console.ReadKey();
     }
