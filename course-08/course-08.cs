@@ -205,9 +205,13 @@ public class Solution
 
     public static bool IsLastMonthInYear(byte month)
         => month == 12;
+    public static bool IsFirstMonthInYear(byte month)
+        => month == 1;
 
     public static bool IsLastDayInMonth(short year, byte month, byte day)
         => day == DaysInMonthUsingBuiltIn(year, month);
+    public static bool IsFirstDayInMonth(byte day)
+        => day == 1;
 
     public static DateTime AddOneDayToDate(DateTime date)
     {
@@ -232,6 +236,33 @@ public class Solution
         else
         {
             day = (byte)(date.Day + 1);
+        }
+
+        return new DateTime(year, month, day);
+    }
+    public static DateTime SubtractOneDayFromDate(DateTime date)
+    {
+        byte day = (byte)date.Day;
+        byte month = (byte)date.Month;
+        short year = (short)date.Year;
+
+        if (IsFirstDayInMonth(day))
+        {
+            if (IsFirstMonthInYear(month))
+            {
+                year--;
+                month = 12;
+                day = 31;
+            }
+            else
+            {
+                month--;
+                day = DaysInMonth(year, month);
+            }
+        }
+        else
+        {
+            day--;
         }
 
         return new DateTime(year, month, day);
@@ -269,8 +300,7 @@ public class Solution
 
     private static void Main()
     {
-        Console.WriteLine(DiffInDaysUsingBuiltIn(new DateTime(2000, 1, 1), new DateTime(2022, 1, 1)));
-        Console.WriteLine(DiffInDaysUsingBuiltIn(new DateTime(2022, 1, 1), new DateTime(2000, 1, 1)));
+        Console.WriteLine(SubtractOneDayFromDate(new DateTime(2022, 12, 31)).ToShortDateString());
 
         Console.ReadKey();
     }
