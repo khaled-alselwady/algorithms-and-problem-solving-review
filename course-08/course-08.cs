@@ -237,9 +237,28 @@ public class Solution
         return new DateTime(year, month, day);
     }
 
+    public static int DiffInDays(DateTime date1, DateTime date2, bool includeEndDay = false)
+    {
+        int diff = 0;
+
+        while (IsDate1BeforeDate2(date1, date2))
+        {
+            date1 = AddOneDayToDate(date1);
+            diff++;
+        }
+
+        return includeEndDay ? ++diff : diff;
+    }
+    public static int DiffInDaysUsingBuiltIn(DateTime date1, DateTime date2, bool includeEndDay = false)
+    {
+        int diff = (int)(date1 - date2).TotalDays;
+        return includeEndDay ? ++diff : diff;
+    }
+
     private static void Main()
     {
-        Console.WriteLine(AddOneDayToDate(new DateTime(2025, 2, 28)).ToShortDateString());
+        Console.WriteLine(DiffInDays(new DateTime(2022, 1, 1), new DateTime(2022, 3, 25)));
+        Console.WriteLine(DiffInDays(new DateTime(2022, 1, 1), new DateTime(2022, 3, 25), true));
 
         Console.ReadKey();
     }
