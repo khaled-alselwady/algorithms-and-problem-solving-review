@@ -240,6 +240,13 @@ public class Solution
     public static int DiffInDays(DateTime date1, DateTime date2, bool includeEndDay = false)
     {
         int diff = 0;
+        sbyte swapFlagValue = 1;
+
+        if (IsDate1AfterDate2(date1, date2))
+        {
+            (date1, date2) = (date2, date1);
+            swapFlagValue = -1;
+        }
 
         while (IsDate1BeforeDate2(date1, date2))
         {
@@ -247,11 +254,11 @@ public class Solution
             diff++;
         }
 
-        return includeEndDay ? ++diff : diff;
+        return includeEndDay ? (++diff * swapFlagValue) : (diff * swapFlagValue);
     }
     public static int DiffInDaysUsingBuiltIn(DateTime date1, DateTime date2, bool includeEndDay = false)
     {
-        int diff = (int)(date1 - date2).TotalDays;
+        int diff = (date2 - date1).Days;
         return includeEndDay ? ++diff : diff;
     }
 
@@ -262,7 +269,8 @@ public class Solution
 
     private static void Main()
     {
-        Console.WriteLine(AgeInDays(new DateTime(1999, 2, 2)));
+        Console.WriteLine(DiffInDaysUsingBuiltIn(new DateTime(2000, 1, 1), new DateTime(2022, 1, 1)));
+        Console.WriteLine(DiffInDaysUsingBuiltIn(new DateTime(2022, 1, 1), new DateTime(2000, 1, 1)));
 
         Console.ReadKey();
     }
