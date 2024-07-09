@@ -255,10 +255,14 @@ public class Solution
         return includeEndDay ? ++diff : diff;
     }
 
+    public static int AgeInDays(DateTime date)
+    {
+        return DiffInDays(date, DateTime.Now);
+    }
+
     private static void Main()
     {
-        Console.WriteLine(DiffInDays(new DateTime(2022, 1, 1), new DateTime(2022, 3, 25)));
-        Console.WriteLine(DiffInDays(new DateTime(2022, 1, 1), new DateTime(2022, 3, 25), true));
+        Console.WriteLine(AgeInDays(new DateTime(1999, 2, 2)));
 
         Console.ReadKey();
     }
