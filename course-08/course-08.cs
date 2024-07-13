@@ -321,15 +321,29 @@ public class Solution
     public static short DaysUntilTheEndOfYear(DateTime date)
        => (short)(DaysInYear((short)date.Year) - date.DayOfYear + 1);
 
+    public static short CalculateActualVacationDays(DateTime startDate, DateTime endDate)
+    {
+        short vacationDays = 0;
+
+        while (IsDate1BeforeDate2(startDate, endDate))
+        {
+            if (IsBusinessDay(startDate))
+            {
+                vacationDays++;
+            }
+
+            startDate = AddOneDayToDate(startDate);
+        }
+
+        return vacationDays;
+    }
+
     private static void Main()
     {
-        DateTime date = new DateTime(2022, 9, 27);
-        Console.WriteLine(IsEndOfWeek(date));
-        Console.WriteLine(IsWeekend(date));
-        Console.WriteLine(IsBusinessDay(date));
-        Console.WriteLine(DaysUntilTheEndOfWeek(date));
-        Console.WriteLine(DaysUntilTheEndOfMonth(date));
-        Console.WriteLine(DaysUntilTheEndOfYear(date));
+        DateTime startDate = new DateTime(2022, 1, 1);
+        DateTime endDate = new DateTime(2022, 2, 2);
+
+        Console.WriteLine(CalculateActualVacationDays(startDate, endDate));
 
         Console.ReadKey();
     }
