@@ -338,12 +338,26 @@ public class Solution
         return vacationDays;
     }
 
+    public static DateTime GetVacationDate(DateTime startVacationDate, short actualVacationDays)
+    {
+        DateTime endVacationDate = startVacationDate;
+
+        while (actualVacationDays > 0)
+        {
+            if (IsBusinessDay(endVacationDate))
+            {
+                actualVacationDays--;
+            }
+
+            endVacationDate = AddOneDayToDate(endVacationDate);
+        }
+
+        return endVacationDate;
+    }
+
     private static void Main()
     {
-        DateTime startDate = new DateTime(2022, 1, 1);
-        DateTime endDate = new DateTime(2022, 2, 2);
-
-        Console.WriteLine(CalculateActualVacationDays(startDate, endDate));
+        Console.WriteLine(GetVacationDate(new DateTime(2022, 1, 1), 23).ToShortDateString());
 
         Console.ReadKey();
     }
