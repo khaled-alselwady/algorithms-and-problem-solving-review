@@ -395,17 +395,18 @@ public class Solution
         return true;
     }
 
+    public static int GetPeriodLength(stPeriod period, bool includeEndDay = false)
+        => DiffInDays(period.Start, period.End, includeEndDay);
+
+
     private static void Main()
     {
         stPeriod period1 = new stPeriod();
         period1.Start = new DateTime(2022, 2, 1);
         period1.End = new DateTime(2022, 2, 10);
 
-        stPeriod period2 = new stPeriod();
-        period2.Start = new DateTime(2022, 2, 11);
-        period2.End = new DateTime(2022, 2, 15);
-
-        Console.WriteLine(IsOverlapPeriods(period1, period2));
+        Console.WriteLine(GetPeriodLength(period1));
+        Console.WriteLine(GetPeriodLength(period1, true));
 
         Console.ReadKey();
     }
