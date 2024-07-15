@@ -378,9 +378,34 @@ public class Solution
         }
     }
 
+    public struct stPeriod
+    {
+        public DateTime Start;
+        public DateTime End;
+    }
+
+    public static bool IsOverlapPeriods(stPeriod period1, stPeriod period2)
+    {
+        if (CompareDates(period1.Start, period2.End) == enDateCompare.After ||
+            CompareDates(period1.End, period2.Start) == enDateCompare.Before)
+        {
+            return false;
+        }
+
+        return true;
+    }
+
     private static void Main()
     {
-        Console.WriteLine(GetVacationDate(new DateTime(2022, 1, 1), 23).ToShortDateString());
+        stPeriod period1 = new stPeriod();
+        period1.Start = new DateTime(2022, 2, 1);
+        period1.End = new DateTime(2022, 2, 10);
+
+        stPeriod period2 = new stPeriod();
+        period2.Start = new DateTime(2022, 2, 11);
+        period2.End = new DateTime(2022, 2, 15);
+
+        Console.WriteLine(IsOverlapPeriods(period1, period2));
 
         Console.ReadKey();
     }
