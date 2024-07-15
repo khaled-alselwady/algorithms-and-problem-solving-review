@@ -398,6 +398,19 @@ public class Solution
     public static int GetPeriodLength(stPeriod period, bool includeEndDay = false)
         => DiffInDays(period.Start, period.End, includeEndDay);
 
+    public static bool IsDateWithinPeriod(stPeriod period, DateTime date)
+    {
+        //if (CompareDates(date, period.Start) == enDateCompare.Before ||
+        //    CompareDates(date, period.End) == enDateCompare.After)
+        //{
+        //    return false;
+        //}
+
+        //return true;
+
+        return !(CompareDates(date, period.Start) == enDateCompare.Before ||
+                 CompareDates(date, period.End) == enDateCompare.After);
+    }
 
     private static void Main()
     {
@@ -405,8 +418,7 @@ public class Solution
         period1.Start = new DateTime(2022, 2, 1);
         period1.End = new DateTime(2022, 2, 10);
 
-        Console.WriteLine(GetPeriodLength(period1));
-        Console.WriteLine(GetPeriodLength(period1, true));
+        Console.WriteLine(IsDateWithinPeriod(period1, new DateTime(2022, 2, 5)));
 
         Console.ReadKey();
     }
