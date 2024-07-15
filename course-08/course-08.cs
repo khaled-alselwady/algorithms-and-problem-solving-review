@@ -355,6 +355,29 @@ public class Solution
         return endVacationDate;
     }
 
+    public enum enDateCompare
+    {
+        Before = -1,
+        Equal = 0,
+        After = 1
+    }
+
+    public static enDateCompare CompareDates(DateTime start, DateTime end)
+    {
+        if (IsDate1BeforeDate2(start, end))
+        {
+            return enDateCompare.Before;
+        }
+        else if (IsDate1AfterDate2(start, end))
+        {
+            return enDateCompare.After;
+        }
+        else
+        {
+            return enDateCompare.Equal;
+        }
+    }
+
     private static void Main()
     {
         Console.WriteLine(GetVacationDate(new DateTime(2022, 1, 1), 23).ToShortDateString());
