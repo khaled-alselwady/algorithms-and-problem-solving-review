@@ -412,13 +412,84 @@ public class Solution
                  CompareDates(date, period.End) == enDateCompare.After);
     }
 
+    public static int CountOverlapDays(stPeriod period1, stPeriod period2)
+    {
+        if (!IsOverlapPeriods(period1, period2))
+        {
+            return 0;
+        }
+
+        if (IsDate1AfterDate2(period1.Start, period2.Start) &&
+            IsDate1BeforeDate2(period1.End, period2.End))
+        {
+            return DiffInDays(period1.Start, period1.End);
+        }
+
+        if (IsDate1AfterDate2(period2.Start, period1.Start) &&
+            IsDate1BeforeDate2(period2.End, period1.End))
+        {
+            return DiffInDays(period2.Start, period2.End);
+        }
+
+        if (IsDate1AfterDate2(period1.End, period2.End))
+        {
+            return DiffInDays(period1.Start, period2.End);
+        }
+
+        if (!IsDate1AfterDate2(period1.Start, period2.Start))
+        {
+            return DiffInDays(period2.Start, period1.End);
+        }
+
+        return 0;
+    }
+
+    private static int _GetOverlapDaysHelper(stPeriod shortPeriod, stPeriod longPeriod)
+    {
+        int overlapDays = 0;
+
+        while (IsDate1BeforeDate2(shortPeriod.Start, shortPeriod.End))
+        {
+            if (IsDateWithinPeriod(longPeriod, shortPeriod.Start))
+            {
+                overlapDays++;
+            }
+
+            shortPeriod.Start = AddOneDayToDate(shortPeriod.Start);
+        }
+
+        return overlapDays;
+    }
+
+    public static int CountOverlapDays_2(stPeriod period1, stPeriod period2)
+    {
+        if (!IsOverlapPeriods(period1, period2))
+        {
+            return 0;
+        }
+
+        if (GetPeriodLength(period1) < GetPeriodLength(period2))
+        {
+            return _GetOverlapDaysHelper(period1, period2);
+        }
+        else
+        {
+            return _GetOverlapDaysHelper(period2, period1);
+        }
+    }
+
     private static void Main()
     {
         stPeriod period1 = new stPeriod();
-        period1.Start = new DateTime(2022, 2, 1);
-        period1.End = new DateTime(2022, 2, 10);
+        period1.Start = new DateTime(2022, 1, 3);
+        period1.End = new DateTime(2022, 1, 10);
 
-        Console.WriteLine(IsDateWithinPeriod(period1, new DateTime(2022, 2, 5)));
+        stPeriod period2 = new stPeriod();
+        period2.Start = new DateTime(2022, 1, 1);
+        period2.End = new DateTime(2050, 12, 30);
+
+        Console.WriteLine(CountOverlapDays(period1, period2));
+        Console.WriteLine(CountOverlapDays_2(period1, period2));
 
         Console.ReadKey();
     }
