@@ -478,18 +478,29 @@ public class Solution
         }
     }
 
+    public static bool IsValidateDate(stDate date)
+    {
+        return !((date.Day <= 0 || date.Day > 31) ||
+                 (date.Month <= 0 || date.Month > 12) ||
+                 (date.Year <= 0 || date.Day > DaysInMonth((short)date.Year, (byte)date.Month))
+                );
+    }
+
+    public struct stDate
+    {
+        public int Year;
+        public int Month;
+        public int Day;
+    }
+
     private static void Main()
     {
-        stPeriod period1 = new stPeriod();
-        period1.Start = new DateTime(2022, 1, 3);
-        period1.End = new DateTime(2022, 1, 10);
+        stDate date = new stDate();
+        date.Year = 2022;
+        date.Month = 6;
+        date.Day = 31;
 
-        stPeriod period2 = new stPeriod();
-        period2.Start = new DateTime(2022, 1, 1);
-        period2.End = new DateTime(2050, 12, 30);
-
-        Console.WriteLine(CountOverlapDays(period1, period2));
-        Console.WriteLine(CountOverlapDays_2(period1, period2));
+        Console.WriteLine(IsValidateDate(date));
 
         Console.ReadKey();
     }
