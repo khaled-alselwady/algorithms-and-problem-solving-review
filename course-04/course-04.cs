@@ -68,12 +68,53 @@
         return DaysToSeconds(days) + HoursToSeconds(hours) + MinutesToSeconds(minutes) + seconds;
     }
 
+    public static int SecondsToDays(int totalSeconds, out int remainder)
+    {
+        int secondsPerDay = 24 * 60 * 60;
+
+        int days = totalSeconds / secondsPerDay;
+        remainder = totalSeconds % secondsPerDay;
+
+        return days;
+    }
+
+    public static int SecondsToHours(int totalSeconds, out int remainder)
+    {
+        int secondsPerHour = 60 * 60;
+
+        int hours = totalSeconds / secondsPerHour;
+        remainder = totalSeconds % secondsPerHour;
+
+        return hours;
+    }
+
+    public static int SecondsToMinutes(int totalSeconds, out int remainder)
+    {
+        int secondsPerMinute = 60;
+
+        int minutes = totalSeconds / secondsPerMinute;
+        remainder = totalSeconds % secondsPerMinute;
+
+        return minutes;
+    }
+
+    public static string GetTimeDuration(int totalSeconds)
+    {
+        int days = SecondsToDays(totalSeconds, out int dayRemainder);
+        int hours = SecondsToHours(dayRemainder, out int hourRemainder);
+        int minutes = SecondsToMinutes(hourRemainder, out int seconds);
+
+        return $"{days:D2}:{hours:D2}:{minutes:D2}:{seconds:D2}";
+    }
+
     private static void Main()
     {
         // Console.WriteLine(Factorial(6));
         // Console.WriteLine(GetWeeksCount(365).ToString("N2"));
         // Console.WriteLine(GetDaysCount(365).ToString("N2"));
 
-        Console.WriteLine(GetTotalSeconds(2, 5, 45, 35).ToString("N0"));
+        // Console.WriteLine(GetTotalSeconds(2, 5, 45, 35).ToString("N0"));
+
+        Console.WriteLine(GetTimeDuration(193535));
     }
 }
