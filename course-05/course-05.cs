@@ -57,7 +57,7 @@
         return (sum == number);
     }
 
-    public static List<byte> ReverseNumber(int number)
+    public static List<byte> NumberToDigits(int number)
     {
         if (number == 0)
         {
@@ -75,10 +75,33 @@
         return result;
     }
 
+    public static int ReverseNumber(int number)
+    {
+        if (number == 0)
+        {
+            return 0;
+        }
+
+        int reverseNumber = 0;
+
+        while (number > 0)
+        {
+            int digit = number % 10;
+            number /= 10;
+            reverseNumber = reverseNumber * 10 + digit;
+        }
+
+        return reverseNumber;
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
         // Console.WriteLine(IsPerfect(29));
-        Console.WriteLine(string.Join(", ", ReverseNumber(1234)));
+        //Console.WriteLine(string.Join(", ", NumberToDigits(1234)));
+        //List<byte> digits = NumberToDigits(1234);
+        //Console.WriteLine(digits.Sum(x => x));
+
+        Console.WriteLine(ReverseNumber(1234));
     }
 }
