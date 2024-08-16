@@ -57,9 +57,28 @@
         return (sum == number);
     }
 
+    public static List<byte> ReverseNumber(int number)
+    {
+        if (number == 0)
+        {
+            return [];
+        }
+
+        List<byte> result = [];
+        while (number > 0)
+        {
+            int digit = number % 10;
+            number /= 10;
+            result.Add((byte)digit);
+        }
+
+        return result;
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
-        Console.WriteLine(IsPerfect(29));
+        // Console.WriteLine(IsPerfect(29));
+        Console.WriteLine(string.Join(", ", ReverseNumber(1234)));
     }
 }
