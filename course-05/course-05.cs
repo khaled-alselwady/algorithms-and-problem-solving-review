@@ -276,7 +276,16 @@
             return 0;
         }
 
-        return (number >= 0f) ? (int)number : (int)number - 1;
+        float fraction = number - (int)number;
+
+        if (Math.Abs(fraction) > 0f)
+        {
+            return (number >= 0f) ? (int)number : (int)number - 1;
+        }
+        else
+        {
+            return (int)number;
+        }
     }
 
     public static float MyCeil(float number)
@@ -331,27 +340,27 @@
 
         // Console.WriteLine(IsPalindrome([1, 2, 3, 5, 2, 1]));
 
-        Console.WriteLine(MyCeil(1.4f));
-        Console.WriteLine(Math.Ceiling(1.4f));
+        Console.WriteLine(MyFloor(1.4f));
+        Console.WriteLine(Math.Floor(1.4f));
         Console.WriteLine();
 
-        Console.WriteLine(MyCeil(5f));
-        Console.WriteLine(Math.Ceiling(5f));
+        Console.WriteLine(MyFloor(5f));
+        Console.WriteLine(Math.Floor(5f));
         Console.WriteLine();
 
-        Console.WriteLine(MyCeil(-5f));
-        Console.WriteLine(Math.Ceiling(-5f));
+        Console.WriteLine(MyFloor(-5f));
+        Console.WriteLine(Math.Floor(-5f));
         Console.WriteLine();
 
-        Console.WriteLine(MyCeil(1.7f));
-        Console.WriteLine(Math.Ceiling(1.7f));
+        Console.WriteLine(MyFloor(1.7f));
+        Console.WriteLine(Math.Floor(1.7f));
         Console.WriteLine();
 
-        Console.WriteLine(MyCeil(-1.2f));
-        Console.WriteLine(Math.Ceiling(-1.2f));
+        Console.WriteLine(MyFloor(-1.2f));
+        Console.WriteLine(Math.Floor(-1.2f));
         Console.WriteLine();
 
-        Console.WriteLine(MyCeil(-1.7f));
-        Console.WriteLine(Math.Ceiling(-1.7f));
+        Console.WriteLine(MyFloor(-1.7f));
+        Console.WriteLine(Math.Floor(-1.7f));
     }
 }
