@@ -124,6 +124,16 @@
         }
     }
 
+    public static List<byte> NumberToDigitsInOrder(int number)
+    {
+        if (number == 0)
+        {
+            return [];
+        }
+
+        return NumberToDigits(ReverseNumber(number));
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -136,6 +146,8 @@
 
         // Console.WriteLine(CountDigitFrequency(123422, 2));
 
-        AllDigitFrequency(1223422331);
+        // AllDigitFrequency(1223422331);
+
+        Console.WriteLine(string.Join(", ", NumberToDigitsInOrder(1234)));
     }
 }
