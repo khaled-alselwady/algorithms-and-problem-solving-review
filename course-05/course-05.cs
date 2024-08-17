@@ -165,6 +165,19 @@
         }
     }
 
+    public static void PrintInvertedLetterPattern(int number)
+    {
+        for (int i = 65 + number - 1; i >= 65; i--)
+        {
+            for (int j = i - 65; j >= 0; j--)
+            {
+                Console.Write((char)i);
+            }
+
+            Console.WriteLine();
+        }
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -184,7 +197,8 @@
         // Console.WriteLine(IsPalindrome(12521));
 
         // PrintInvertedNumberPattern(9);
+        //PrintNumberPattern(5);
 
-        PrintNumberPattern(5);
+        PrintInvertedLetterPattern(26);
     }
 }
