@@ -134,6 +134,11 @@
         return NumberToDigits(ReverseNumber(number));
     }
 
+    public static bool IsPalindrome(int number)
+    {
+        return number == ReverseNumber(number);
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -148,6 +153,8 @@
 
         // AllDigitFrequency(1223422331);
 
-        Console.WriteLine(string.Join(", ", NumberToDigitsInOrder(1234)));
+        // Console.WriteLine(string.Join(", ", NumberToDigitsInOrder(1234)));
+
+        Console.WriteLine(IsPalindrome(12521));
     }
 }
