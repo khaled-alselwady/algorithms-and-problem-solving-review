@@ -250,6 +250,25 @@
         return true;
     }
 
+    public static float MyRound(float number)
+    {
+        if (number == 0f)
+        {
+            return 0;
+        }
+
+        float fraction = number - (int)number;
+
+        if (Math.Abs(fraction) >= 0.5f)
+        {
+            return (number > 0) ? (int)number + 1 : (int)number - 1;
+        }
+        else
+        {
+            return (int)number;
+        }
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -281,6 +300,15 @@
 
         // Console.WriteLine(string.Join(", ", distinctNumbers));
 
-        Console.WriteLine(IsPalindrome([1, 2, 3, 5, 2, 1]));
+        // Console.WriteLine(IsPalindrome([1, 2, 3, 5, 2, 1]));
+
+        Console.WriteLine(MyRound(1.4f));
+        Console.WriteLine(Math.Round(1.4f));
+
+        Console.WriteLine(MyRound(-1.2f));
+        Console.WriteLine(Math.Round(-1.2f));
+
+        Console.WriteLine(MyRound(-1.7f));
+        Console.WriteLine(Math.Round(-1.7f));
     }
 }
