@@ -106,6 +106,24 @@
         return (byte)digits.Count(x => x == digit);
     }
 
+    public static void AllDigitFrequency(int number)
+    {
+        if (number == 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i <= 9; i++)
+        {
+            int sumCurrentDigit = CountDigitFrequency(number, i);
+
+            if (sumCurrentDigit > 0)
+            {
+                Console.WriteLine($"Digit {i} Frequency is => {sumCurrentDigit} time(s)");
+            }
+        }
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -116,6 +134,8 @@
 
         // Console.WriteLine(ReverseNumber(1234));
 
-        Console.WriteLine(CountDigitFrequency(123422, 2));
+        // Console.WriteLine(CountDigitFrequency(123422, 2));
+
+        AllDigitFrequency(1223422331);
     }
 }
