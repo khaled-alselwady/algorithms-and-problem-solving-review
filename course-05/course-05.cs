@@ -94,14 +94,28 @@
         return reverseNumber;
     }
 
+    public static byte CountDigitFrequency(int number, int digit)
+    {
+        if (number == 0)
+        {
+            return 0;
+        }
+
+        List<byte> digits = NumberToDigits(number);
+
+        return (byte)digits.Count(x => x == digit);
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
-        // Console.WriteLine(IsPerfect(29));
+        // Console.WriteLine(IsPerfect(28));
         //Console.WriteLine(string.Join(", ", NumberToDigits(1234)));
         //List<byte> digits = NumberToDigits(1234);
         //Console.WriteLine(digits.Sum(x => x));
 
-        Console.WriteLine(ReverseNumber(1234));
+        // Console.WriteLine(ReverseNumber(1234));
+
+        Console.WriteLine(CountDigitFrequency(123422, 2));
     }
 }
