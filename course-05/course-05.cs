@@ -269,6 +269,16 @@
         }
     }
 
+    public static float MyFloor(float number)
+    {
+        if (number == 0f)
+        {
+            return 0;
+        }
+
+        return (number >= 0f) ? (int)number : (int)number - 1;
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -302,13 +312,19 @@
 
         // Console.WriteLine(IsPalindrome([1, 2, 3, 5, 2, 1]));
 
-        Console.WriteLine(MyRound(1.4f));
-        Console.WriteLine(Math.Round(1.4f));
+        Console.WriteLine(MyFloor(1.4f));
+        Console.WriteLine(Math.Floor(1.4f));
+        Console.WriteLine();
 
-        Console.WriteLine(MyRound(-1.2f));
-        Console.WriteLine(Math.Round(-1.2f));
+        Console.WriteLine(MyFloor(1.7f));
+        Console.WriteLine(Math.Floor(1.7f));
+        Console.WriteLine();
 
-        Console.WriteLine(MyRound(-1.7f));
-        Console.WriteLine(Math.Round(-1.7f));
+        Console.WriteLine(MyFloor(-1.2f));
+        Console.WriteLine(Math.Floor(-1.2f));
+        Console.WriteLine();
+
+        Console.WriteLine(MyFloor(-1.7f));
+        Console.WriteLine(Math.Floor(-1.7f));
     }
 }
