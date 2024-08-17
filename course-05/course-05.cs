@@ -139,6 +139,19 @@
         return number == ReverseNumber(number);
     }
 
+    public static void PrintInvertedNumberPattern(int number)
+    {
+        for (int i = number; i > 0; i--)
+        {
+            for (int j = i; j > 0; j--)
+            {
+                Console.Write(i);
+            }
+
+            Console.WriteLine();
+        }
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -155,6 +168,8 @@
 
         // Console.WriteLine(string.Join(", ", NumberToDigitsInOrder(1234)));
 
-        Console.WriteLine(IsPalindrome(12521));
+        // Console.WriteLine(IsPalindrome(12521));
+
+        PrintInvertedNumberPattern(9);
     }
 }
