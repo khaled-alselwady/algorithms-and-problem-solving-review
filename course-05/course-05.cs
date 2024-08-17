@@ -1,5 +1,6 @@
 ﻿public class Solution
 {
+    private static Random _random = new();
     public static bool IsPrime(int number)
     {
         if (number <= 1)
@@ -191,6 +192,26 @@
         }
     }
 
+    private static void _Swap(ref int x, ref int y)
+    {
+        (x, y) = (y, x);
+    }
+
+    public static void ShaffleArray(int[] array)
+    {
+        if (array == null || array.Length == 0)
+        {
+            return;
+        }
+
+        for (int i = 0; i < array.Length; i++)
+        {
+            int randIndex = _random.Next(0, array.Length);
+
+            _Swap(ref array[i], ref array[randIndex]);
+        }
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -213,6 +234,12 @@
         // PrintNumberPattern(5);
 
         // PrintInvertedLetterPattern(26);
-        PrintLetterPattern(26);
+        // PrintLetterPattern(26);
+
+        int[] numbers = [1, 2, 3, 4, 5];
+        ShaffleArray(numbers);
+
+
+        Console.WriteLine(string.Join(", ", numbers));
     }
 }
