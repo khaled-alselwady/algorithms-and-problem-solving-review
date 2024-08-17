@@ -232,6 +232,24 @@
         return distinctNumbers.ToArray();
     }
 
+    public static bool IsPalindrome(int[] array)
+    {
+        if (array == null || array.Length == 0)
+        {
+            return false;
+        }
+
+        for (int i = 0; i <= array.Length / 2; i++)
+        {
+            if (array[i] != array[array.Length - 1 - i])
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -258,9 +276,11 @@
 
         int[] numbers = [1, 2, 3, 4, 5, 2, 1, 4];
         //ShaffleArray(numbers);
-        int[] distinctNumbers = GetDistinctArray(numbers);
+        //int[] distinctNumbers = GetDistinctArray(numbers);
 
 
-        Console.WriteLine(string.Join(", ", distinctNumbers));
+        // Console.WriteLine(string.Join(", ", distinctNumbers));
+
+        Console.WriteLine(IsPalindrome([1, 2, 3, 5, 2, 1]));
     }
 }
