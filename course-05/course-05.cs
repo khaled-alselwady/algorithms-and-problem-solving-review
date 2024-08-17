@@ -212,6 +212,26 @@
         }
     }
 
+    public static int[] GetDistinctArray(int[] array)
+    {
+        if (array == null || array.Length == 0)
+        {
+            return [];
+        }
+
+        List<int> distinctNumbers = [];
+
+        foreach (int i in array)
+        {
+            if (!distinctNumbers.Contains(i))
+            {
+                distinctNumbers.Add(i);
+            }
+        }
+
+        return distinctNumbers.ToArray();
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -236,10 +256,11 @@
         // PrintInvertedLetterPattern(26);
         // PrintLetterPattern(26);
 
-        int[] numbers = [1, 2, 3, 4, 5];
-        ShaffleArray(numbers);
+        int[] numbers = [1, 2, 3, 4, 5, 2, 1, 4];
+        //ShaffleArray(numbers);
+        int[] distinctNumbers = GetDistinctArray(numbers);
 
 
-        Console.WriteLine(string.Join(", ", numbers));
+        Console.WriteLine(string.Join(", ", distinctNumbers));
     }
 }
