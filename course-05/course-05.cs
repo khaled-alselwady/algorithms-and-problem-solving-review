@@ -279,6 +279,25 @@
         return (number >= 0f) ? (int)number : (int)number - 1;
     }
 
+    public static float MyCeil(float number)
+    {
+        if (number == 0f)
+        {
+            return 0;
+        }
+
+        float fraction = number - (int)number;
+
+        if (fraction > 0f)
+        {
+            return (number >= 0f) ? (int)number + 1 : (int)number;
+        }
+        else
+        {
+            return (int)number;
+        }
+    }
+
     private static void Main()
     {
         // Console.WriteLine(IsPrime(29));
@@ -312,19 +331,27 @@
 
         // Console.WriteLine(IsPalindrome([1, 2, 3, 5, 2, 1]));
 
-        Console.WriteLine(MyFloor(1.4f));
-        Console.WriteLine(Math.Floor(1.4f));
+        Console.WriteLine(MyCeil(1.4f));
+        Console.WriteLine(Math.Ceiling(1.4f));
         Console.WriteLine();
 
-        Console.WriteLine(MyFloor(1.7f));
-        Console.WriteLine(Math.Floor(1.7f));
+        Console.WriteLine(MyCeil(5f));
+        Console.WriteLine(Math.Ceiling(5f));
         Console.WriteLine();
 
-        Console.WriteLine(MyFloor(-1.2f));
-        Console.WriteLine(Math.Floor(-1.2f));
+        Console.WriteLine(MyCeil(-5f));
+        Console.WriteLine(Math.Ceiling(-5f));
         Console.WriteLine();
 
-        Console.WriteLine(MyFloor(-1.7f));
-        Console.WriteLine(Math.Floor(-1.7f));
+        Console.WriteLine(MyCeil(1.7f));
+        Console.WriteLine(Math.Ceiling(1.7f));
+        Console.WriteLine();
+
+        Console.WriteLine(MyCeil(-1.2f));
+        Console.WriteLine(Math.Ceiling(-1.2f));
+        Console.WriteLine();
+
+        Console.WriteLine(MyCeil(-1.7f));
+        Console.WriteLine(Math.Ceiling(-1.7f));
     }
 }
